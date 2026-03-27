@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neo4j RAG Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">RAG + PDF + Neo4j</p>
+        <h1>Consulte seu PDF com contexto real e veja o pipeline funcionando.</h1>
+        <p class="hero-copy">
+          Esta interface conversa com o backend do projeto, busca trechos
+          relevantes no PDF indexado e mostra a resposta gerada pelo modelo com
+          base no contexto recuperado.
+        </p>
+      </header>
+
+      <main class="grid">
+        <section class="panel panel-highlight">
+          <div class="panel-heading">
+            <h2>Pergunte ao documento</h2>
+            <span class="status-pill" id="status-pill">Conectando...</span>
+          </div>
+
+          <form id="question-form" class="question-form">
+            <label for="question" class="sr-only">Sua pergunta</label>
+            <textarea
+              id="question"
+              name="question"
+              rows="6"
+              placeholder="Ex.: Como converter objetos JavaScript em tensores?"
+              required
+            ></textarea>
+
+            <div class="actions">
+              <button type="submit" id="submit-button">Consultar</button>
+              <button type="button" class="ghost" data-fill-question>
+                Usar exemplo
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel panel-info">
+          <h2>Estado da base</h2>
+          <dl class="stats" id="stats">
+            <div>
+              <dt>Chunks indexados</dt>
+              <dd>...</dd>
+            </div>
+            <div>
+              <dt>Arquivo fonte</dt>
+              <dd>...</dd>
+            </div>
+            <div>
+              <dt>Top K</dt>
+              <dd>...</dd>
+            </div>
+            <div>
+              <dt>Porta</dt>
+              <dd>...</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel panel-answer">
+          <div class="panel-heading">
+            <h2>Resposta</h2>
+            <span class="mono" id="request-state">Aguardando consulta</span>
+          </div>
+          <article id="answer" class="answer empty">
+            A resposta vai aparecer aqui assim que voce enviar uma pergunta.
+          </article>
+        </section>
+
+        <section class="panel panel-context">
+          <div class="panel-heading">
+            <h2>Contexto recuperado</h2>
+            <span class="mono" id="score-state">Sem score ainda</span>
+          </div>
+          <article id="context" class="context empty">
+            Os trechos mais relevantes do PDF aparecerao aqui para voce validar
+            o comportamento do RAG.
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
